@@ -27,7 +27,6 @@ productos.forEach(producto => {
 }
 mostrarProductos();
 
-
 let carrito = [];
 function agregarAlCarrito(id) {
     const productoOriginal = productos.find(prod => prod.id === id);
@@ -49,31 +48,57 @@ function agregarAlCarrito(id) {
     }
 }
 
-    function renderizarCarrito() {
-        CarritoDeCompras.innerHTML = '';
+function renderizarCarrito() {
+    CarritoDeCompras.innerHTML = '';
 
-        let totalGeneral = 0;
+    let totalGeneral = 0;
 
-        carrito.forEach(item => {
-            const div = document.createElement('div');
-            div.classList.add('item-carrito');
+    carrito.forEach((item, index) => {   
+        const div = document.createElement('div');
+        div.classList.add('item-carrito');
 
-            const subtotal = item.precio * item.cantidad;
-            totalGeneral += subtotal;
+        const subtotal = item.precio * item.cantidad;
+        totalGeneral += subtotal;
 
-            div.innerHTML = `
-                <h4>${item.nombre}</h4>
-                <p>Precio: ${item.precio}</p>
-                <p>Cantidad: ${item.cantidad}</p>
-                <p>Subtotal: ${subtotal}</p>
-            `;
-            CarritoDeCompras.appendChild(div);
-        }); 
-        const elementoTotal = document.getElementById('total-carrito');
-        elementoTotal.innerText = totalGeneral;
+        div.innerHTML = `
+            <h4>${item.nombre}</h4>
+            <p>Precio: ${item.precio}</p>
+            <p>Cantidad: ${item.cantidad}</p>
+            <button id="boton-eliminar" onclick="eliminarProducto(${index})">Eliminar producto</button>
+            <p>Subtotal: ${subtotal}</p>
+        `;
 
-        mostrarProductos();
+        CarritoDeCompras.appendChild(div);
+    });
+
+    const elementoTotal = document.getElementById('total-carrito');
+    elementoTotal.innerText = totalGeneral;
+}
+
+   function eliminarProducto(index){
+
+    const productoEnCarrito = carrito[index];
+
+    const productoOriginal = productos.find(
+        prod => prod.id === productoEnCarrito.id
+    );
+
+    if (productoEnCarrito.cantidad > 1) {
+
+        productoEnCarrito.cantidad--;   // quitamo un producto del carro
+        productoOriginal.cantidad++;    // Devuelve 1 al stock
+
+    } else {
+
+        productoOriginal.cantidad++; 
+        carrito.splice(index, 1);
     }
 
-   
+
+    renderizarCarrito();
+    mostrarProductos();
+}
+
+
+
 
