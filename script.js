@@ -1,11 +1,33 @@
+const abrirCarrito = document.getElementById("abrir-carrito");
+const carritoPopup = document.getElementById("carrito-popup");
+const cerrarCarrito = document.getElementById("cerrar-carrito");
+
+abrirCarrito.addEventListener("click", () => {
+    carritoPopup.style.display = "flex";
+});
+
+cerrarCarrito.addEventListener("click", () => {
+    carritoPopup.style.display = "none";
+});
+
+// Cerrar si se hace clic fuera del carrito
+carritoPopup.addEventListener("click", (e) => {
+    if (e.target === carritoPopup) {
+        carritoPopup.style.display = "none";
+    }
+});
+
+
+
+
 const contenedorProductos = document.getElementById('contenedor-productos');
 const CarritoDeCompras = document.getElementById('carrito-de-compras');
 const productos = [
-    { id: 1, nombre: 'Manzana', precio: 1, cantidad: 10 },
-    { id: 2, nombre: 'Pera', precio: 2, cantidad: 15 },
-    { id: 3, nombre: 'Naranja', precio: 3, cantidad: 20 },
-    { id: 4, nombre: 'Sandía', precio: 4, cantidad: 5 },
-    { id: 5, nombre: 'Papaya', precio: 5, cantidad: 8 },
+    { id: 1, nombre: 'Manzana', precio: 1, cantidad: 10, imagen:'./img/manzana.jpg' },
+    { id: 2, nombre: 'Pera', precio: 2, cantidad: 15, imagen:'./img/pera.jpg' },
+    { id: 3, nombre: 'Naranja', precio: 3, cantidad: 20, imagen:'./img/naranja.jpg' },
+    { id: 4, nombre: 'Sandía', precio: 4, cantidad: 5, imagen:'./img/sandia.jpg' },
+    { id: 5, nombre: 'Papaya', precio: 5, cantidad: 8, imagen:'./img/papaya.jpg' },
 ];
 function mostrarProductos() {
     contenedorProductos.innerHTML = '';
@@ -16,11 +38,14 @@ productos.forEach(producto => {
     div.classList.add('producto');
 
     div.innerHTML = `
+        <img src="${producto.imagen}">
         <h3>${producto.nombre}</h3>
-        <p>Precio: ${producto.precio}</p>
+        <p>Precio: $${producto.precio}</p>
         <p>Cantidad disponible: ${producto.cantidad}</p>
-        <button onclick="agregarAlCarrito(${producto.id})">Agregar al carrito</button>
-    `;
+        <button ${producto.cantidad === 0 ? 'disabled' : ''} 
+            onclick="agregarAlCarrito(${producto.id})">
+            Agregar al carrito
+        </button> `;
 
     contenedorProductos.appendChild(div);
 }   );
@@ -60,13 +85,18 @@ function renderizarCarrito() {
         const subtotal = item.precio * item.cantidad;
         totalGeneral += subtotal;
 
-        div.innerHTML = `
-            <h4>${item.nombre}</h4>
-            <p>Precio: ${item.precio}</p>
-            <p>Cantidad: ${item.cantidad}</p>
-            <button id="boton-eliminar" onclick="eliminarProducto(${index})">Eliminar producto</button>
-            <p>Subtotal: ${subtotal}</p>
-        `;
+       div.innerHTML = `
+    <img src="${item.imagen}">
+    <div>
+        <h4>${item.nombre}</h4>
+        <p>Precio: $${item.precio}</p>
+        <p>Cantidad: ${item.cantidad}</p>
+        <p>Subtotal: $${subtotal}</p>
+        <button class="boton-eliminar" onclick="eliminarProducto(${index})">
+            Eliminar producto
+        </button>
+    </div>
+`;
 
         CarritoDeCompras.appendChild(div);
     });
@@ -113,3 +143,6 @@ let subtotalGeneral = 0;
 
 const botonFactura = document.getElementById('boton-factura');
 botonFactura.addEventListener('click', generarFactura);
+
+
+

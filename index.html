@@ -2,20 +2,25 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Mi Tienda Online</title>
+    <title>Las Delicias</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1> Mi Tienda de [Tema]</h1>
+    <h1> Fruteria Las Delicias</h1>
 
     <section id="contenedor-productos"></section>
 
-    <section id="carrito">
+    <button id="abrir-carrito">🛒 Ver Carrito</button>
+
+<section id="carrito-popup">
+    <div class="carrito-contenido">
+        <span id="cerrar-carrito">&times;</span>
         <h2>Tu Carrito</h2>
         <ul id="carrito-de-compras"></ul>
         <p>Total: $<span id="total-carrito">0</span></p>
         <button id="boton-factura">Generar Factura</button>
-    </section>
+    </div>
+</section>
 
     <script src="script.js"></script>
 </body>
