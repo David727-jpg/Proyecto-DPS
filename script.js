@@ -99,6 +99,17 @@ function renderizarCarrito() {
     mostrarProductos();
 }
 
+function generarFactura() {
+let subtotalGeneral = 0;
+    carrito.forEach(item => {
+        const subtotal = item.precio * item.cantidad;
+        subtotalGeneral += subtotal;
+    });
+    const impuestoIVA = subtotalGeneral * 0.13;        // Iva del 13%
+    const totalFactura = subtotalGeneral + impuestoIVA;   //Total final con IVA incluido
+    alert(`Factura generada. Subtotal: ${subtotalGeneral}, Impuesto IVA: ${impuestoIVA}, Total: ${totalFactura}`);
+}
 
 
-
+const botonFactura = document.getElementById('boton-factura');
+botonFactura.addEventListener('click', generarFactura);
