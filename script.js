@@ -138,14 +138,38 @@ function renderizarCarrito() {
 }
 
 function generarFactura() {
+    if (carrito.length === 0) {
+        alert("El carrito está vacío. Agrega productos antes de generar la factura.");
+        return;
+    }
+
+    let detalleProductos = "--- DETALLE DE SU COMPRA ---\n\n";
 let subtotalGeneral = 0;
     carrito.forEach(item => {
         const subtotal = item.precio * item.cantidad;
         subtotalGeneral += subtotal;
+        detalleProductos += `Producto: ${item.nombre}\nPrecio Unitario: $${item.precio}\nCantidad: ${item.cantidad}\nSubtotal: $${subtotal}\n\n`;
     });
     const impuestoIVA = subtotalGeneral * 0.13;        // Iva del 13%
     const totalFactura = subtotalGeneral + impuestoIVA;   //Total final con IVA incluido
-    alert(`Factura generada. Subtotal: ${subtotalGeneral}, Impuesto IVA: ${impuestoIVA}, Total: ${totalFactura}`);
+    
+    const mensajeFactura = `
+${detalleProductos}
+---------------------------
+Subtotal: $${subtotalGeneral.toFixed(2)}
+IVA (13%): $${impuestoIVA.toFixed(2)}
+TOTAL A PAGAR: $${totalFactura.toFixed(2)}
+---------------------------
+¡Gracias por su compra en Las Delicias!
+    `;
+    alert(mensajeFactura);
+
+    carrito = []; // Vaciamos el arreglo
+    renderizarCarrito(); 
+    mostrarProductos();  
+
+    carritoPopup.style.display = "none";
+
 }
 
 
