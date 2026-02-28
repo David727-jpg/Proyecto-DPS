@@ -32,3 +32,6 @@ Clona el repositorio: git clone
 Abre el archivo index.html en tu navegador favorito.
 
 Explora el catálogo, añade frutas al carrito y haz clic en "Generar Factura" para ver el resumen contable.
+
+LINK DE LA PAGINA
+https://david727-jpg.github.io/Proyecto-DPS/
