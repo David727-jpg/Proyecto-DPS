@@ -17,7 +17,15 @@ carritoPopup.addEventListener("click", (e) => {
     }
 });
 
-
+class Producto {
+    constructor(id, nombre, precio, cantidad, imagen) {
+        this.id = id;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.cantidad = cantidad; // Esto es el stock disponible
+        this.imagen = imagen;
+    }
+}
 
 
 const contenedorProductos = document.getElementById('contenedor-productos');
