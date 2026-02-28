@@ -31,11 +31,11 @@ class Producto {
 const contenedorProductos = document.getElementById('contenedor-productos');
 const CarritoDeCompras = document.getElementById('carrito-de-compras');
 const productos = [
-    { id: 1, nombre: 'Manzana', precio: 1, cantidad: 10, imagen:'./img/manzana.jpg' },
-    { id: 2, nombre: 'Pera', precio: 2, cantidad: 15, imagen:'./img/pera.jpg' },
-    { id: 3, nombre: 'Naranja', precio: 3, cantidad: 20, imagen:'./img/naranja.jpg' },
-    { id: 4, nombre: 'Sandía', precio: 4, cantidad: 5, imagen:'./img/sandia.jpg' },
-    { id: 5, nombre: 'Papaya', precio: 5, cantidad: 8, imagen:'./img/papaya.jpg' },
+    { id: 1, nombre: 'Manzana', precio: 1, cantidad: 10, imagen:'./img/Manzana.jpg' },
+    { id: 2, nombre: 'Pera', precio: 2, cantidad: 15, imagen:'./img/Pera.jpg' },
+    { id: 3, nombre: 'Naranja', precio: 3, cantidad: 20, imagen:'./img/Naranja.jpg' },
+    { id: 4, nombre: 'Sandía', precio: 4, cantidad: 5, imagen:'./img/Sandia.jpg' },
+    { id: 5, nombre: 'Papaya', precio: 5, cantidad: 8, imagen:'./img/Papaya.jpg' },
 ];
 function mostrarProductos() {
     contenedorProductos.innerHTML = '';
